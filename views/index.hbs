@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{query.original}}</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css"
+    integrity="sha384-X38yfunGUhNzHpBaEBsWLO+A0HDYOQi8ufWDkZ0k9e0eXz/tH3II7uKZ9msv++Ls" crossorigin="anonymous">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="results">
+    <div class="band">
+      <img src="https://cdn.search.brave.com/serp/v2/_app/immutable/assets/brave-logo-light.BR9nBcVE.svg" alt="">
+      <p class="desktop-xsmall-regular" style="margin: 0;"> Paid {{ecashAmount}} sat</p>
+    </div>
+
+    {{#each web.results}}
+    <div class="result-item">
+      <div class="profile">
+        <a href="{{this.url}}" target="_blank">
+          <div class="profile_wrap">
+            <img src="{{this.profile.img}}" alt="profile icon" style="width: 20px; height: 20px; margin-right: 10px;">
+            <div>
+              <div class="profile_name">{{{this.profile.name}}}</div>
+              <div class="profile_long_name">{{{this.profile.long_name}}}</div>
+            </div>
+          </div>
+        </a>
+      </div>
+      <a href="{{this.url}}" class="title" style="padding: 8px 0 4px 0;" target="_blank"> {{{this.title}}}</a>
+      <p>{{{this.description}}}</p>
+      <p><small>{{this.age}}</small></p>
+    </div>
+  </div>
+  {{#if @first}}
+  <div style="padding-left: 8px;">
+    <h3 style="line-height: 2rem; margin: 0">Videos</h3>
+  </div>
+  <div class="tcontainer">
+    {{#each ../videos.results}}
+    <div class="video-item">
+      {{#if this.thumbnail.src}}
+      <a href="{{this.url}}" target="_blank">
+        <div class="video_img" style="background-image:url('{{this.thumbnail.src}}');">
+          <div class="play_button"></div>
+        </div>
+      </a>
+      {{/if}}
+      <div style="width:200px; padding: 8px 16px 0 0px;">
+        <div style="display: flex; align-items: center;">
+          <img src="{{this.meta_url.favicon}}" alt="favicon" style="width: 16px; height: 16px; margin-right: 4px;">
+          <p class="desktop-xsmall-regular" style="margin: 0;">{{{this.meta_url.netloc}}}</p>
+        </div>
+        <a href="{{this.url}}" target="_blank" class="video_title">
+          {{this.title}}
+        </a>
+        <small>{{this.age}}</small>
+      </div>
+    </div>
+    {{/each}}
+  </div>
+  {{/if}}
+  {{/each}}
+  </div>
+</body>
+
+</html>
